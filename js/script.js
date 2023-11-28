@@ -85,7 +85,7 @@ function operation(a, b, operator) {
 			return a - b;
 		case "/":
 			return a / b;
-		case "*":
+		case "x":
 			return a * b;
 	}
 }
