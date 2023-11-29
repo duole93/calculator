@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:40px;
+    box-sizing: border-box;
+}
+.calulator{
+    width: 200px;
+    border:1px solid black;
+    display:flex;
+    padding:10px;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.calulator div{
+    display:flex;
+}
+
+.display{
+    border: 1px solid black;
+    justify-content: flex-end;
+    padding: 0 5px;
+}
+
+.button-container{
+    flex-direction: column;
+}
+.top-control button{    
+    flex: 1;
+    height:50px;
+}
+
+.numPad{
+    flex-wrap: wrap;
+}
+.numPad button {
+    width:50px;
+    height:50px;
+}
