@@ -10,10 +10,9 @@ const negate = document.querySelector(".btn-negate");
 
 const display = document.querySelector(".display");
 
-let ans = 0;
 let operand1 = 0;
 let operand2 = 0;
-let operator = "";
+let operator = null;
 let isDecimal = false;
 
 //fa
@@ -28,10 +27,10 @@ function displayInputReset() {
 //reset
 reset.addEventListener("click", () => {
 	display.textContent = "0";
-	ans = 0;
+
 	operand1 = 0;
 	operand2 = 0;
-	operator = "";
+	operator = null;
 	isDecimal = false;
 });
 
@@ -63,6 +62,10 @@ decimal.addEventListener("click", () => {
 //operator
 operators.forEach((op) => {
 	op.addEventListener("click", (event) => {
+		if (operator !== null) {
+			operand2 = parseInt(display.textContent);
+			display.textContent = operation(operand1, operand2, operator);
+		}
 		operator = op.textContent;
 		operand1 = parseInt(display.textContent);
 		isInputAccept = false;
@@ -71,10 +74,12 @@ operators.forEach((op) => {
 
 //equal
 equal.addEventListener("click", () => {
-	operand2 = parseInt(display.textContent);
-	ans = operation(operand1, operand2, operator);
-	display.textContent = ans;
-	isInputAccept = false;
+	if (operator !== null) {
+		operand2 = parseInt(display.textContent);
+		display.textContent = operation(operand1, operand2, operator);
+		operator = null;
+		isInputAccept = false;
+	}
 });
 
 function operation(a, b, operator) {
@@ -84,6 +89,8 @@ function operation(a, b, operator) {
 		case "-":
 			return a - b;
 		case "/":
+			if(b===0)
+				return "NAN";
 			return a / b;
 		case "x":
 			return a * b;
