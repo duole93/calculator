@@ -5,8 +5,7 @@ const operators = document.querySelectorAll(".operator button:nth-child(-n+4)");
 const equal = document.querySelector(".btn-equal");
 
 const reset = document.querySelector(".btn-reset");
-const percent = document.querySelector(".btn-percent");
-const negate = document.querySelector(".btn-negate");
+const undo = document.querySelector(".btn-delete");
 
 const display = document.querySelector(".display");
 
@@ -33,6 +32,17 @@ reset.addEventListener("click", () => {
 	operator = null;
 	isDecimal = false;
 });
+
+//delete
+undo.addEventListener('click', ()=>{
+	let currentDisplay = display.textContent;
+	if(currentDisplay.length>1){
+		display.textContent = currentDisplay.substring(0, currentDisplay.length-1);
+	}
+	else	
+		display.textContent = '0';
+
+})
 
 //display number
 numbers.forEach((num) => {
