@@ -26,7 +26,6 @@ function displayInputReset() {
 //reset
 reset.addEventListener("click", () => {
 	display.textContent = "0";
-
 	operand1 = 0;
 	operand2 = 0;
 	operator = null;
@@ -73,20 +72,22 @@ decimal.addEventListener("click", () => {
 operators.forEach((op) => {
 	op.addEventListener("click", (event) => {
 		if (operator !== null) {
-			operand2 = parseInt(display.textContent);
+			operand2 = Number(display.textContent);
 			display.textContent = operation(operand1, operand2, operator);
 		}
 		operator = op.textContent;
-		operand1 = parseInt(display.textContent);
+		operand1 = Number(display.textContent);
 		isInputAccept = false;
+		isDecimal = false;
 	});
 });
 
 //equal
 equal.addEventListener("click", () => {
 	if (operator !== null) {
-		operand2 = parseInt(display.textContent);
-		display.textContent = operation(operand1, operand2, operator);
+		operand2 = Number(display.textContent);
+		let ans = Math.round(operation(operand1, operand2, operator)*1000)/1000;;
+		display.textContent = ans;
 		operator = null;
 		isInputAccept = false;
 	}
