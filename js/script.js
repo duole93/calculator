@@ -1,7 +1,7 @@
-const numbers = document.querySelectorAll(".numPad button:nth-child(-n+10)");
+const numbers = document.querySelectorAll(".numPad .btn-num");
 const decimal = document.querySelector(".btn-decimal");
 
-const operators = document.querySelectorAll(".operator button:nth-child(-n+4)");
+const operators = document.querySelectorAll(".numPad .btn-op");
 const equal = document.querySelector(".btn-equal");
 
 const reset = document.querySelector(".btn-reset");
@@ -13,15 +13,7 @@ let operand1 = 0;
 let operand2 = 0;
 let operator = null;
 let isDecimal = false;
-
-//fa
 let isInputAccept = false;
-
-//display reset and accept new number input
-function displayInputReset() {
-	isInputAccept = true;
-	display.textContent = "";
-}
 
 //reset
 reset.addEventListener("click", () => {
@@ -30,6 +22,7 @@ reset.addEventListener("click", () => {
 	operand2 = 0;
 	operator = null;
 	isDecimal = false;
+	let isInputAccept = false;
 });
 
 //delete
@@ -47,7 +40,8 @@ undo.addEventListener('click', ()=>{
 numbers.forEach((num) => {
 	num.addEventListener("click", (event) => {
 		if (!isInputAccept) {
-			displayInputReset();
+			isInputAccept = true;
+			display.textContent = "";
 		}
 		display.textContent += num.textContent;
 	});
